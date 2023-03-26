@@ -12,11 +12,18 @@
   <button onclick="generateQRCode()">Generate QR Code</button><br>
   <br>
   <div id="qrcode"></div>
+  <a id="download" download="qrcode.png" href="#">Download QR Code</a>
   
   <script>
     function generateQRCode() {
       var data = document.getElementById("text").value;
       var qr = new QRCode(document.getElementById("qrcode"), data);
+
+      // Get the generated QR code image as a base64-encoded PNG
+      var qrCodeImage = document.getElementById("qrcode").getElementsByTagName("img")[0].src;
+
+      // Set the href attribute of the download link to the base64-encoded PNG
+      document.getElementById("download").href = qrCodeImage;
     }
   </script>
 </body>
